@@ -1,24 +1,13 @@
 import { useEffect, useState } from 'react';
 
-// eslint-disable-next-line react/prop-types
-const Task = ({ id }) => {
+const Task = ({ title, onDelete,onClick }) => {
 
-  const [taskName, setTaskName] = useState(null);
-
-  useEffect(() => {
-    if (taskName === null) {
-      const storedName = sessionStorage.getItem(`task-${id}`);
-    
-      let taskName = `Task #${id+1}`;
-      if (!storedName) {
-        sessionStorage.setItem(`task-${id}`, `Task #${id+1}`);
-      }
-
-      setTaskName(storedName || taskName );
-    }
-  }, [taskName, id]);
-
-  return <>{taskName}</>;
+  return   (
+    <div className="task-box" >
+  <h4 onClick={onClick}>{title}</h4>
+  <button onClick={onDelete}>Delete</button>
+</div>
+  )      
 };
 
 export default Task;
